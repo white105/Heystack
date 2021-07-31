@@ -13,9 +13,17 @@ function HomeScreen() {
   );
 }
 
-function SettingsScreen() {
+function MatchesScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Matches!</Text>
+    </View>
+  );
+}
+
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>Settings!</Text>
     </View>
   );
@@ -38,6 +46,10 @@ export default function App() {
                 } else if (route.name === 'Matches') {
                   iconName = focused ? 'ios-list' : 'ios-list';
                 }
+                else if (route.name === 'Settings') {
+                  iconName = focused ? 'ios-list' : 'ios-list';
+                }
+
 
                 // You can return any component that you like here!
                 return <Ionicons name={iconName} size={size} color={color} />;
@@ -49,7 +61,8 @@ export default function App() {
             }}
           >
         <Tab.Screen name="Random Chat" component={HomeScreen} />
-        <Tab.Screen name="Matches" component={SettingsScreen} />
+        <Tab.Screen name="Matches" component={MatchesScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
