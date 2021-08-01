@@ -14,3 +14,7 @@ What editor do people usually use - vscode.
 React native elements ui library 
 
 -c to clear cache
+
+made the folder structure suitable to a page system
+
+added an early test of a match screen
