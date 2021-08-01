@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { speechBubble } from './assets/speech-bubble.png'
 import MatchFeed from './screens/matches';
 
-function HomeScreen() {
+function ChatScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Home!</Text>
@@ -14,7 +14,7 @@ function HomeScreen() {
   );
 }
 
-function SettingsScreen() {
+function matchesScreen() {
   return (
       <MatchFeed />
   );
@@ -51,8 +51,8 @@ export default function MainApp() {
               inactiveTintColor: 'gray',
             }}
           >
-        <Tab.Screen name="Random Chat" component={HomeScreen} />
-        <Tab.Screen name="Matches" component={SettingsScreen} />
+        <Tab.Screen name="Random Chat" component={ChatScreen} />
+        <Tab.Screen name="Matches" component={matchesScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
