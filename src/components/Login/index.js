@@ -1,5 +1,15 @@
 import React from "react";
-import { View, SafeAreaView, StyleSheet, TextInput, Text } from "react-native";
+import {
+  View,
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  Text,
+  Button,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
+import axios from "axios";
 
 const styles = StyleSheet.create({
   input: {
@@ -7,6 +17,23 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  loginScreenButton: {
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: "#1E6738",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#fff",
+  },
+  loginText: {
+    color: "#fff",
+    textAlign: "center",
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   titleText: {
     fontSize: 20,
@@ -28,6 +55,7 @@ export default function Login() {
           {"\n"}
           {"\n"}
         </Text>
+
         <TextInput
           style={styles.input}
           onChangeText={onChangeText}
@@ -41,6 +69,14 @@ export default function Login() {
           keyboardType="numeric"
         />
       </SafeAreaView>
+
+      <TouchableOpacity
+        style={styles.loginScreenButton}
+        onPress={() => console.log("bruh")}
+        underlayColor="#fff"
+      >
+        <Text style={styles.loginText}>Enter</Text>
+      </TouchableOpacity>
     </View>
   );
 }
