@@ -9,10 +9,6 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import axios from "axios";
-
-
-import { useNavigation } from '@react-navigation/native';
 
 
 const styles = StyleSheet.create({
@@ -60,12 +56,12 @@ const styles = StyleSheet.create({
 
 
 
-export default class Login extends React.Component {
-  state={
-    username:"",
-    password:""
-  }
-  render(){
+export default function Login () {
+
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+
     return (
 
       <View>
@@ -81,7 +77,8 @@ export default class Login extends React.Component {
           <TextInput
             style={styles.input}
             placeholder="Username"
-            onChangeText={text => this.setState({username:text})}/>
+            onChangeText={(username) =>
+            setUsername(username)}/>
         <TouchableOpacity>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
@@ -89,19 +86,21 @@ export default class Login extends React.Component {
             secureTextEntry
             style={styles.input}
             placeholder="Password"
-            onChangeText={text => this.setState({password:text})}/>
+            onChangeText={(password) =>
+            setPassword(password)}/>
         </SafeAreaView>
         <TouchableOpacity
           style={styles.loginScreenButton}
-          onPress={() => console.log(this.state)}
+          onPress={() => console.log(username, password)}
           underlayColor="#fff"
         >
           <Text style={styles.loginText}>Enter</Text>
         </TouchableOpacity>
-        <TouchableOpacity >
+        <TouchableOpacity>
           <Text style={styles.signup}>Not a member? Sign up here today!</Text>
         </TouchableOpacity>
       </View>
   );
-  }
+  
 }
+
