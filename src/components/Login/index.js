@@ -9,7 +9,7 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import axios from "axios";
+
 
 const styles = StyleSheet.create({
   input: {
@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  signup:{
+    textAlign: "center",
+    color: "#1E6738",
+    paddingTop: 10
   },
   loginScreenButton: {
     marginRight: 40,
@@ -40,43 +45,62 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  forgot:{
+    textAlign: "right",
+    color: "black",
+    paddingRight: 10
+    
+  },
+
 });
 
-export default function Login() {
-  const [text, onChangeText] = React.useState("Useless Text");
-  const [number, onChangeNumber] = React.useState(null);
-  return (
-    <View>
-      <SafeAreaView>
-        <Text style={styles.titleText}>
-          {"\n"}
-          {"\n"}
-          {"Login"}
-          {"\n"}
-          {"\n"}
-        </Text>
 
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeNumber}
-          value={number}
-          placeholder="useless placeholder"
-          keyboardType="numeric"
-        />
-      </SafeAreaView>
 
-      <TouchableOpacity
-        style={styles.loginScreenButton}
-        onPress={() => console.log("bruh")}
-        underlayColor="#fff"
-      >
-        <Text style={styles.loginText}>Enter</Text>
-      </TouchableOpacity>
-    </View>
+export default function Login () {
+
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+
+    return (
+
+      <View>
+        <SafeAreaView>
+          <Text style={styles.titleText}>
+            {"\n"}
+            {"\n"}
+            {"Login"}
+            {"\n"}
+            {"\n"}
+          </Text>
+
+          <TextInput
+            style={styles.input}
+            placeholder="Username"
+            onChangeText={(username) =>
+            setUsername(username)}/>
+        <TouchableOpacity>
+          <Text style={styles.forgot}>Forgot Password?</Text>
+        </TouchableOpacity>
+          <TextInput
+            secureTextEntry
+            style={styles.input}
+            placeholder="Password"
+            onChangeText={(password) =>
+            setPassword(password)}/>
+        </SafeAreaView>
+        <TouchableOpacity
+          style={styles.loginScreenButton}
+          onPress={() => console.log(username, password)}
+          underlayColor="#fff"
+        >
+          <Text style={styles.loginText}>Enter</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.signup}>Not a member? Sign up here today!</Text>
+        </TouchableOpacity>
+      </View>
   );
+  
 }
+
