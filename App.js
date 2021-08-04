@@ -2,7 +2,7 @@ import React from "react";
 import MainApp from "./src/Main";
 import Login from "./src/components/Login";
 import SignUp from "./src/components/SignUp";
-import Main from "./src/Main";
+import Home from "./src/components/Home";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -18,8 +18,8 @@ export default function App() {
           {(props) => <Login {...props} />}
         </Stack.Screen>
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="Main">
-          {(props) => <Main {...props} />}
+        <Stack.Screen name="Home">
+          {(props) => <Home {...props} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
