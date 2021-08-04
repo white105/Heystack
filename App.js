@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer theme={{ colors: { background: "#E9FFF9" } }}>
+    <NavigationContainer theme={{ colors: { background: "white" } }}>
       <Stack.Navigator
         initialRouteName="Login"
         screenOptions={{
