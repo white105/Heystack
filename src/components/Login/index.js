@@ -9,6 +9,7 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
+import axios from "axios";
 
 const styles = StyleSheet.create({
   input: {
@@ -51,9 +52,25 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Login() {
+export default function Login({ navigation }) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  const sendLoginInfo = () => {
+    console.log("username", username);
+    console.log("password", password);
+
+    axios({
+      method: "post",
+      url: "http://localhost:3000/login",
+      data: {
+        username: username,
+        password: password,
+      },
+    });
+
+    navigation.navigate("Main");
+  };
 
   return (
     <View>
@@ -83,12 +100,12 @@ export default function Login() {
       </SafeAreaView>
       <TouchableOpacity
         style={styles.loginScreenButton}
-        onPress={() => console.log(username, password)}
+        onPress={sendLoginInfo}
         underlayColor="#fff"
       >
         <Text style={styles.loginText}>Enter</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
         <Text style={styles.signup}>Not a member? Sign up here today!</Text>
       </TouchableOpacity>
     </View>
