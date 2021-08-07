@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { speechBubble } from "../../assets/speech-bubble.png";
 import Matches from "../Matches";
 import Chat from "../Chat";
+import Profile from "../Profile";
 
 const Tab = createBottomTabNavigator();
 
