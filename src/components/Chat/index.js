@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   SafeAreaView,
@@ -9,7 +9,7 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-
+import { GiftedChat } from "react-native-gifted-chat";
 
 const styles = StyleSheet.create({
   input: {
@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-  signup:{
+  signup: {
     textAlign: "center",
     color: "#1E6738",
-    paddingTop: 10
+    paddingTop: 10,
   },
   loginScreenButton: {
     marginRight: 40,
@@ -33,46 +33,40 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#fff",
-    height: 100
+    height: 100,
   },
   buttonText: {
     color: "#fff",
     textAlign: "center",
     paddingLeft: 10,
     paddingRight: 10,
-    fontSize: 50
+    fontSize: 50,
   },
   titleText: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
   },
+  giftedChat: {
+    width: 100,
+    height: 100,
+    borderColor: "black",
+    borderWidth: 2,
+    backgroundColor: "skyblue",
+  },
 });
 
+export default function Chat({ navigation }) {
+  const [messages, setMessages] = useState();
 
+  function handleSend(newMessage = []) {
+    setMessages(GiftedChat.append(messages, newMessage));
+  }
 
-export default function Chat ({ navigation }) {
-
-    return (
-
-      <View>
-        <SafeAreaView>
-          <Text style={styles.titleText}>
-            {"\n"}
-            {"\n"}
-            {"Begin Chatting here"}
-            {"\n"}
-            {"\n"}
-          </Text>
-        </SafeAreaView>
-        <TouchableOpacity
-          style={styles.loginScreenButton}
-          underlayColor="#fff" 
-          onPress={() => navigation.navigate("ChatScreen")}
-        >
-          <Text style={styles.buttonText}>Enter</Text>
-        </TouchableOpacity>
-      </View>
+  return (
+    <GiftedChat
+      messages={messages}
+      onSend={(newMessage) => handleSend(newMessage)}
+    />
   );
-  
 }
