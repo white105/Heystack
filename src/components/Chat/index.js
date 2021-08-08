@@ -9,7 +9,7 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import { GiftedChat } from "react-native-gifted-chat";
+import { Bubble, GiftedChat } from "react-native-gifted-chat";
 
 const styles = StyleSheet.create({
   input: {
@@ -59,6 +59,22 @@ const styles = StyleSheet.create({
 export default function Chat({ navigation }) {
   const [messages, setMessages] = useState();
 
+  function renderBubble(props) {
+    return (
+        <Bubble
+            {...props}
+            wrapperStyle={{
+              left: {//Change the colour here to change the colour of the incoming message bubble
+                backgroundColor: 'black',
+              },
+              right: {//Change the colour here to change the colour of the sender's message bubble
+                backgroundColor: '#1E6738'
+              }
+            }}
+        />
+    );
+  }
+
   function handleSend(newMessage = []) {
     setMessages(GiftedChat.append(messages, newMessage));
   }
@@ -67,6 +83,7 @@ export default function Chat({ navigation }) {
     <GiftedChat
       messages={messages}
       onSend={(newMessage) => handleSend(newMessage)}
+      renderBubble={renderBubble}
     />
   );
 }
