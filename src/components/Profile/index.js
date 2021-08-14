@@ -12,6 +12,11 @@ import {
 import axios from "axios";
 
 const styles = StyleSheet.create({
+  profileContainer: {
+    width: 500,
+    height: 250,
+    backgroundColor: "red",
+  },
   input: {
     height: 40,
     margin: 12,
@@ -22,7 +27,7 @@ const styles = StyleSheet.create({
 
 export default function Profile({ navigation }) {
   return (
-    <View>
+    <View style={styles.profileContainer}>
       <Text>Profile</Text>
     </View>
   );

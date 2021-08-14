@@ -9,19 +9,50 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
+import Profile from "../Profile";
 
 const styles = StyleSheet.create({
   chatContainer: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "flex-end",
+    justifyContent: "flex-start",
     flex: 1,
+  },
+  profile: {
+    flex: 1,
+  },
+  chat: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    flex: 2,
   },
   messageInput: {
     height: 40,
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  messageContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  firstPersonMessage: {
+    padding: 10,
+    margin: 2,
+    backgroundColor: "#0583f8",
+    color: "white",
+    fontFamily: "Helvetica",
+    fontSize: 20,
+    textAlign: "right",
+    borderRadius: 20,
+    overflow: "hidden",
+  },
+  secondPersonMessage: {
+    padding: 5,
+    margin: 2,
+    backgroundColor: "blue",
+    color: "white",
   },
   signup: {
     textAlign: "center",
@@ -76,17 +107,29 @@ export default function Chat({ navigation }) {
 
   return (
     <View style={styles.chatContainer}>
-      {messages.map((message, idx) => {
-        return <Text key={idx}>{message}</Text>;
-      })}
+      <View style={styles.profile}>
+        <Profile></Profile>
+      </View>
 
-      <TextInput
-        style={styles.messageInput}
-        placeholder="send a message.."
-        onChangeText={onChangeMessageText}
-        value={messageText}
-        onSubmitEditing={sendMessage}
-      ></TextInput>
+      <View style={styles.chat}>
+        <View style={styles.messageContainer}>
+          {messages.map((message, idx) => {
+            return (
+              <Text style={styles.firstPersonMessage} key={idx}>
+                {message}
+              </Text>
+            );
+          })}
+        </View>
+
+        <TextInput
+          style={styles.messageInput}
+          placeholder="send a message.."
+          onChangeText={onChangeMessageText}
+          value={messageText}
+          onSubmitEditing={sendMessage}
+        ></TextInput>
+      </View>
     </View>
   );
 }
