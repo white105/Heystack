@@ -9,10 +9,15 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import { Bubble, GiftedChat } from "react-native-gifted-chat";
 
 const styles = StyleSheet.create({
-  input: {
+  chatContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    flex: 1,
+  },
+  messageInput: {
     height: 40,
     margin: 12,
     borderWidth: 1,
@@ -57,33 +62,31 @@ const styles = StyleSheet.create({
 });
 
 export default function Chat({ navigation }) {
-  const [messages, setMessages] = useState();
-
-  function renderBubble(props) {
-    return (
-        <Bubble
-            {...props}
-            wrapperStyle={{
-              left: {//Change the colour here to change the colour of the incoming message bubble
-                backgroundColor: 'black',
-              },
-              right: {//Change the colour here to change the colour of the sender's message bubble
-                backgroundColor: '#1E6738'
-              }
-            }}
-        />
-    );
-  }
+  const [messages, setMessages] = useState(["hello"]);
+  const [messageText, onChangeMessageText] = React.useState(null);
 
   function handleSend(newMessage = []) {
     setMessages(GiftedChat.append(messages, newMessage));
   }
 
+  const sendMessage = () => {
+    setMessages([...messages, messageText]);
+    onChangeMessageText("");
+  };
+
   return (
-    <GiftedChat
-      messages={messages}
-      onSend={(newMessage) => handleSend(newMessage)}
-      renderBubble={renderBubble}
-    />
+    <View style={styles.chatContainer}>
+      {messages.map((message, idx) => {
+        return <Text key={idx}>{message}</Text>;
+      })}
+
+      <TextInput
+        style={styles.messageInput}
+        placeholder="send a message.."
+        onChangeText={onChangeMessageText}
+        value={messageText}
+        onSubmitEditing={sendMessage}
+      ></TextInput>
+    </View>
   );
 }
