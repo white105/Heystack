@@ -1,8 +1,12 @@
-import React from 'react'
-import { View, Text, StyleSheet, Dimensions, Image, FlatList } from "react-native"
-
-
-
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Image,
+  FlatList,
+} from "react-native";
 
 const slideList = Array.from({ length: 5 }).map((_, i) => {
   return {
@@ -10,7 +14,6 @@ const slideList = Array.from({ length: 5 }).map((_, i) => {
     image: `https://picsum.photos/1440/2842?random=${i}`,
   };
 });
-
 
 function Slide({ data }) {
   return (
@@ -21,10 +24,14 @@ function Slide({ data }) {
     >
       <Image
         source={{ uri: data.image }}
-        style={{ alignSelf: 'center', height: 200, width: 200, borderWidth: 1,    borderRadius: 15 }}
-        
+        style={{
+          alignSelf: "center",
+          height: 300,
+          width: 500,
+          borderWidth: 1,
+          borderRadius: 1,
+        }}
       ></Image>
-
     </View>
   );
 }
